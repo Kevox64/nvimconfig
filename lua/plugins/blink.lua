@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  version = "1.*",
   config = function()
     require("blink.cmp").setup(
       {
@@ -9,7 +10,7 @@ return {
             preset = "default",
             ["<C-space>"] = {},
             ["<C-p>"] = {},
-            ["<Tab>"] = { "select_and_accept" },
+            ["<Tab>"] = { "select_and_accept", "fallback" },
             ["<S-Tab>"] = {},
             ["<C-y>"] = { "show", "show_documentation", "hide_documentation" },
             ["<C-n>"] = { "select_and_accept" },
@@ -19,6 +20,7 @@ return {
             ["<C-f>"] = { "scroll_documentation_up", "fallback" },
             ["<C-l>"] = { "snippet_forward", "fallback" },
             ["<C-h>"] = { "snippet_backward", "fallback" },
+            ["<CR>"] = { "accept", "fallback" },
             -- ["<C-e>"] = { "hide" },
         },
 

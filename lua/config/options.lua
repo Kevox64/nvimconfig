@@ -29,3 +29,5 @@ vim.opt.ignorecase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.splitkeep = "cursor"
+
+vim.opt.clipboard = "unnamedplus"
