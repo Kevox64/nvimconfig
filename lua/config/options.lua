@@ -31,3 +31,29 @@ vim.opt.splitright = true
 vim.opt.splitkeep = "cursor"
 
 vim.opt.clipboard = "unnamedplus"
+
+vim.diagnostic.config({
+  virtual_text = false,        -- inline diagnostic text
+  signs = true,
+  underline = true,
+  update_in_insert = false,   -- don't show diagnostics while typing
+  float = {
+    border = "rounded",
+    source = true,            -- shows which LSP reported the diagnostic
+    header = "",
+    prefix = "",
+    focusable = false,        -- cursor won't jump into the float
+  },
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    -- Only open if there are actual diagnostics under cursor
+    local diags = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+    if #diags > 0 then
+      vim.diagnostic.open_float(nil, { focus = false })
+    end
+  end,
+})
+
+vim.opt.updatetime = 500
